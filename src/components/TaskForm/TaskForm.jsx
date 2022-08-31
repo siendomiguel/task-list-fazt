@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
 
-const TaskForm = (props) => {
+const TaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const { createTask } = useContext(TaskContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.createTask({
+    createTask({
       title,
       description,
     });
@@ -23,6 +25,7 @@ const TaskForm = (props) => {
             setTitle(e.target.value);
           }}
           value={title}
+          autoFocus
         />
         <textarea
           id=""
